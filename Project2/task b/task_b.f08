@@ -69,12 +69,18 @@ PROGRAM test
     10 format(A14)
     WRITE(filename,10)'iterations.dat'
     open(unit=1,file=filename,action='write',position='append')
+    if (n==1) then
+      write(1,*) 0
+    endif
     write(1,*) iterations
     close(1)
 
     11 format(A14)
     WRITE(filename,11)'dimensions.dat'
     open(unit=1,file=filename,action='write',position='append')
+    if (n==1) then
+      write(1,*) 0
+    endif
     write(1,*) n
     close(1)
 
