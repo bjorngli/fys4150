@@ -1,6 +1,14 @@
+PROGRAM unittests
+  ! .exe compilation done by: $ gfortran -O3 -fopt-info -o unittests.exe unittests.f08 maxoffdiag_rotate.o
+  IMPLICIT NONE
+  call unittest_maxoffdiag()
+  call unittest_orthogonal_transformation()
+END PROGRAM unittests
+
 subroutine unittest_maxoffdiag()
-! Unittest to check if algorithm searching for the largest non-diagonal element
-! return the correct answer.
+  ! Unittest to check if algorithm searching for the largest non-diagonal element
+  ! return the correct answer.
+  USE maxoffdiag_rotate
   IMPLICIT NONE
   ! In/out arguments
   double precision, allocatable, dimension(:,:) :: b(:,:)
@@ -85,7 +93,7 @@ subroutine unittest_orthogonal_transformation()
   ! 2. Done by comparing calculated eigenvalues of A by hand up against eigenvalues by
   ! lapack of matrix B where B is created by using a orthogonal transform on A
   ! Comment to self: Should maybe use hand calculation on both or lapack on both?
-
+  USE maxoffdiag_rotate
   IMPLICIT NONE
   ! Subroutine only arguments
   double precision, allocatable, dimension(:,:) :: a(:,:),r(:,:)!,lapack
@@ -166,5 +174,4 @@ subroutine unittest_orthogonal_transformation()
   if (tests == 2) then
     write(*,*) 'Subroutine rotate: All tests passed'
   endif
-
 end subroutine unittest_orthogonal_transformation
