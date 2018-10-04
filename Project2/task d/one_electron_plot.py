@@ -17,12 +17,6 @@ permute = eigen_values.argsort()
 eigen_values = eigen_values[permute]
 eigen_vectors = eigen_vectors[:,permute]
 
-
-# Print statements for testing
-#print(eigen_vectors[0])
-print(eigen_values[0],eigen_values[1],eigen_values[2],eigen_values[3])
-
-
 # Plot of the three lowest lying eigenstates
 rho_max = 5
 n = 200
@@ -41,21 +35,18 @@ plt.plot(r, FirstEigvector**2 ,'b-',label=r'$\lambda_1=$%7.4f'%eigen_values[0])
 plt.xlim((0,5))
 plt.xlabel(r'$\rho$',fontsize=14)
 plt.ylabel(r'Radial probability $|\psi(\rho)|^2$',fontsize=14)
-#plt.grid(True)
 plt.legend()
 plt.subplot(312)
 plt.plot(r, SecondEigvector**2 ,'g-',label=r'$\lambda_2=$%7.4f'%eigen_values[1])
 plt.xlim((0,5))
 plt.xlabel(r'$\rho$',fontsize=14)
 plt.ylabel(r'Radial probability $|\psi(\rho)|^2$',fontsize=14)
-#plt.grid(True)
 plt.legend()
 plt.subplot(313)
 plt.plot(r, ThirdEigvector**2 ,'r-',label=r'$\lambda_3=$%7.4f'%eigen_values[2])
 plt.xlim((0,5))
 plt.xlabel(r'$\rho$',fontsize=14)
 plt.ylabel(r'Radial probability $|\psi(\rho)|^2$',fontsize=14)
-#plt.grid(True)
 plt.legend()
 plt.tight_layout()
 plt.savefig('eigenvector1.pdf')
