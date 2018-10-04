@@ -91,19 +91,17 @@ subroutine unittest_orthogonal_transformation()
 
   ! 1. Done by knowing the dot product of orthogonal vectors should equal zero
   ! 2. Done by comparing calculated eigenvalues of A by hand up against eigenvalues by
-  ! lapack of matrix B where B is created by using a orthogonal transform on A
-  ! Comment to self: Should maybe use hand calculation on both or lapack on both?
   USE maxoffdiag_rotate
   IMPLICIT NONE
   ! Subroutine only arguments
-  double precision, allocatable, dimension(:,:) :: a(:,:),r(:,:)!,lapack
-  integer :: i,j,n,l,k,tests
-  real :: max,eig_1,eig_2,eig_3,lapack_1,lapack_2,lapack_3
+  double precision, allocatable, dimension(:,:) :: a(:,:),r(:,:)
+  integer :: i,j,n,l,k,tests,iterations,max_iterations
+  real :: max,eig_1,eig_2,eig_3
 
   ! Variables
   n = 3         ! Matrix dimension
   tests = 0     ! Number of tests should equal 2 after code if 2 test pass
-
+  
   ! Allocate
   allocate(a(n,n),r(n,n))
 
@@ -143,25 +141,37 @@ subroutine unittest_orthogonal_transformation()
       eig_2 = 2.0 - sqrt(2.0)
       eig_3 = 2.0 + sqrt(2.0)
 
-      ! First call to find max and then rotate
+      ! ! First call to find max and then rotate
+      ! call maxoffdiag(n,a,max,l,k)
+      ! ! Doing one orthogonal transformation
+      ! call rotate(n,a,r,l,k)
+      ! write(*,*) a
+
+      ! First call to find max + rotations on matrix a
       call maxoffdiag(n,a,max,l,k)
-      ! Doing one orthogonal transformation
-      call rotate(n,a,r,l,k)
+      max_iterations = n*n*n
+      do while (ABS(max) > 10e-8 .AND. iterations < max_iterations)
+        call maxoffdiag(n,a,max,l,k)
+        call rotate(n,a,r,l,k)
+        iterations = iterations + 1
+      enddo
 
       ! Test orthogonal eigenvectors
-      if (DOT_PRODUCT(r(:,1),r(:,2)) + DOT_PRODUCT(r(:,1),r(:,3)) + DOT_PRODUCT(r(:,2),r(:,3))<=10e-5) then
+      if (DOT_PRODUCT(r(:,1),r(:,2)) + DOT_PRODUCT(r(:,1),r(:,3)) + DOT_PRODUCT(r(:,2),r(:,3))<=10e-6) then
         tests = tests + 1
       else
         write(*,*) 'Subroutine rotate: Orthogonality test failed'
       endif
 
       ! Test eigenvalues
-      ! Insert LAPACK solving of new matrix A.
-      ! Decide if you wanna do lapack as a matrix and index lapack(1) or do lapack_1,lapack_2... as variables.
-      ! Just remember to put the variables/arrays under IMPLICIT NONE.
-      !  if ( (eig_1 - lapack_1) <= 10**(-8) .AND. (eig_2 - lapack_2) <= 10**(-8) .AND. (eig_3 - lapack_3) <= 10**(-8)) then
-      if ( (1.0 - 1.0) <= 10**(-8) .AND. (1.0 - 1.0) <= 10**(-8) .AND. (1.0 - 1.0) <= 10**(-8)) then
-        !write(*,*) 'test'
+
+      ! One rotation gives the matrix, which also has the same char. eq. as the original matrix
+      !   2.9999998211860657        0.0000000000000000       0.70710676908493042
+      !   0.0000000000000000       0.99999994039535522      -0.70710676908493042
+      !   0.70710676908493042      -0.70710676908493042        2.0000000000000000
+
+      ! But we do all rotations, easier to get eigenvalues on diagonal than doing the hand calculation again.
+      if ( ABS(eig_3 - a(1,1)) <= 10e-6 .AND. ABS(eig_2 - a(2,2)) <= 10e-6 .AND. ABS(eig_1 - a(3,3)) <= 10e-6) then
         tests = tests + 1
       else
         write(*,*) 'Subroutine rotate: Eigenvalue test failed'
