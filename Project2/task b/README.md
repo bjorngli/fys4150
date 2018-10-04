@@ -2,7 +2,7 @@
 Finding out how many iterations are needed to solve an eigenvalue problem when the dimension of the matrix increases.
 
 ## Dependencies
-gFortran, Python with matplotlib and latex?
+gFortran, Python with matplotlib and laTeX
 
 ## NB!
 Delete dimension.dat and iterations.dat after every run! Had problems with finding a good way to write the values to file so as of now it's
