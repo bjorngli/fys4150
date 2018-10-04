@@ -42,16 +42,6 @@ permute4 = eigen_values4.argsort()
 eigen_values4 = eigen_values4[permute4]
 eigen_vectors4 = eigen_vectors4[:,permute4]
 
-
-# Print statements for testing
-#print(eigen_vectors[0])
-print(eigen_values1[0])
-print(eigen_values2[0])
-print(eigen_values3[0])
-print(eigen_values4[0])
-#print(eigen_values[0],eigen_values[1],eigen_values[2],eigen_values[3])
-
-
 # Plot of the three lowest lying eigenstates
 rho_max = 5
 n = 200
@@ -64,11 +54,6 @@ FirstEigvector4 = eigen_vectors4[:,0]
 
 plt.figure()
 
-
-#area = np.trapz(FirstEigvector**2, dx=(10/200))
-#print(area)
-#sum1 = np.sum(FirstEigvector)
-#print(sum1)
 plt.rc('text', usetex=True)
 plt.rc('font', family='serif')
 
