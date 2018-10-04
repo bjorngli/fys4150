@@ -27,8 +27,8 @@ do e = 1,4
     ! Variables
     n = 200             ! Matrix dimension
     iterations = 0      ! Iteration counter
-    eps = 10e-8      ! Epsillon for checking error is not too big
-    rho_N = 10          ! rho_max value
+    eps = 10e-8         ! Epsillon for checking error is not too big
+    rho_N = 5           ! rho_max value
     h = rho_N/n         ! Calculting
 
     ! Allocate a,n,rho,eig_one
@@ -112,8 +112,5 @@ do e = 1,4
     ! Deallocate
     deallocate(a,r,eig_one,rho,freq)
 
-    ! Call unittests
-  !  call unittest_maxoffdiag()
-  !  call unittest_orthogonal_transformation()
 enddo
 ENDPROGRAM two_electron
