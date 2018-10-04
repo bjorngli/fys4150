@@ -1,5 +1,5 @@
 # FYS4150 Project 2 Task e
-Solving the scaled radial Schroedinger’s equation 
+Quantum dots in three dimensions, two electron.
 
 ## Dependencies
 gFortran, Python with matplotlib and laTeX.
