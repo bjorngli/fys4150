@@ -4,5 +4,15 @@ Unittests.f08 contains two subroutines, one for testing of the module subroutine
 ## Dependencies
 gFortran
 
-## Run
+## Runs
+Compilation:
 $ gfortran -O3 -fopt-info -o unittests.exe unittests.f08 maxoffdiag_rotate.o
+
+.exe:
+C:\location_of_file>unittests.exe
+
+Should return:
+ Subroutine maxoffdiag: All tests passed
+ Subroutine rotate: All tests passed
+
+
