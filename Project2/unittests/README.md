@@ -13,7 +13,7 @@ $ gfortran -O3 -fopt-info -o unittests.exe unittests.f08 maxoffdiag_rotate.o
 
 C:\location_of_file>unittests.exe
 
-Should return:
+Returns:
 
 Subroutine maxoffdiag: All tests passed
 
