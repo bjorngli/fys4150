@@ -25,7 +25,6 @@ plt.grid(True)
 plt.savefig('energy.pdf',bbox_inches='tight')
 plt.show()
 
-#
 #Momentum
 plt.subplot(122)
 plt.plot(np.linspace(20,(len(momentum)+20),len(momentum)),np.log10(momentum['error']),label='Momentum error')
@@ -36,8 +35,6 @@ plt.xlabel(r'Number of integration points',size=12)
 plt.grid(True)
 plt.savefig('momentum.pdf',bbox_inches='tight')
 plt.show()
-#
-
 
 plt.figure(figsize=(8,4))
 # Distance euler
