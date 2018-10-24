@@ -12,20 +12,10 @@ dist = pd.read_csv('dist_error.dat',sep='\s+',header=None,names=['error'])
 dist_euler = pd.read_csv('dist_error_euler.dat',sep='\s+',header=None,names=['error'])
 error_line = np.repeat(1e-5, len(energy))
 
-#energy_mom_euler = pd.read_csv('euler_energy.dat',sep='\s+',header=None,names=['energy','momentum'])
-
-# #Energy
-# plt.plot(np.linspace(10/20,10/(len(energy)+20),len(energy)),energy['error'],label='Energy error')
-# plt.plot(np.linspace(10/20,10/(len(energy)+20),len(energy)),error_line,label='Accepted error 1e-5')
-# plt.ylabel('Maximum difference from starting energy')
-# plt.xlabel('Time step deltaT')
-# plt.legend()
-# plt.grid(True)
-# plt.show()
 plt.figure(figsize=(7,6))
+
 #Energy
 plt.subplot(121)
-
 plt.plot(np.linspace(20,(len(energy)+20),len(energy)),energy['error'],label='Energy error')
 plt.plot(np.linspace(20,(len(energy)+20),len(energy)),error_line,label='Accepted error 1e-5')
 plt.ylabel(r'Maximum difference from starting energy',size=12)
