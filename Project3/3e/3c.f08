@@ -14,7 +14,7 @@ program solarsystem
   real(8),dimension(numbodies,3)::updatedforce
 
   type(solver)::solar
-
+  !Change Jupiter's mass and the filenames to get the files to put into jupmasses.py
   solar%mass(1)=1.
   solar%mass(2)=5.97219/1988500.
   solar%mass(3)=1898.13/1988500.
